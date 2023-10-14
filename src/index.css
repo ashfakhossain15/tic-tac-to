@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #0f1b21;
+}
+.board {
+  display: grid;
+  width: 560px;
+  height: 48 0px;
+  margin: auto;
+}
+.boxes {
+  margin: 7px;
+  border-radius: 10px;
+  background: #223b48;
+  width: 150px !important;
+  height: 150px !important;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.boxes img{
+    
+    padding: 10px;
+}
