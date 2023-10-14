@@ -4,7 +4,7 @@ import o from "/—Pngtree—white circle element asset with_5995571.png";
 let data = ["", "", "", "", "", "", "", "", "", ""];
 const TicTacToe = () => {
   let [count, setCount] = useState(0);
-  let [lock, setLock] = useState(false);
+  const [lock, setLock] = useState(false);
 
   const toggle = (e, num) => {
     if (lock) {
@@ -20,6 +20,20 @@ const TicTacToe = () => {
       data[num] = "o";
       setCount(++count);
     }
+  };
+  const checkWin = () => {
+    if (data[0] === data[1] && data[1] === data[2] && data[2] != "") {
+      won(data);
+    }
+    else if (data[3] === data[4] && data[4] === data[5] && data[5] != "") {
+      won(data);
+    }
+    else if (data[6] === data[7] && data[7] === data[8] && data[8] != "") {
+      won(data);
+    }
+  };
+  const won = (winner) => {
+    setLock(true);
   };
 
   return (
