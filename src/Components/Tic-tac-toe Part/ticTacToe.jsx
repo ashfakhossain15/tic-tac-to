@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import xo from "/130217-x-letter-free-photo.png";
 import ox from "/—Pngtree—white circle element asset with_5995571.png";
 let data = ["", "", "", "", "", "", "", "", "", ""];
@@ -8,19 +8,18 @@ const TicTacToe = () => {
   const [winner, setWinner] = useState("");
   const titleRef = useRef(null);
   const modal = useRef(null);
-
+  const x = count % 2 === 0;
   const toggle = (e, num) => {
     if (lock || data[num] !== "") {
       return;
     }
+    setCount((count) => count + 1);
     if (count % 2 === 0) {
       e.target.innerHTML = `<img className="duration-200 transition-all" src="${xo}">`;
       data[num] = "x";
-      setCount((count) => count + 1);
     } else {
       e.target.innerHTML = `<img className="w-full" src="${ox}">`;
       data[num] = "o";
-      setCount((count) => count + 1);
     }
     checkWin();
   };
@@ -50,101 +49,147 @@ const TicTacToe = () => {
     if (winner === "x") {
       modal.current.showModal();
       console.log("first winner");
-      titleRef.current.innerHTML = ` <h3> x win</h3>`;
+      titleRef.current.innerHTML = ` 
+      <div className="w-52 p-10 m-5"> 
+      <img className="w-24" src="${xo}">
+      </div>
+      `;
       console.log(won);
     } else if (winner === "o") {
       modal.current.showModal();
-      titleRef.current.innerHTML = ` <h3> o win</h3>`;
+      titleRef.current.innerHTML = ` <div className="w-52 p-10 m-5"> 
+      <img className="duration-200 transition-all " src="${ox}">
+      </div>
+
+      `;
     }
   };
-  console.log(modal);
   return (
-    <div className="container mx-auto min-h-screen text-white">
-      <h1 className="text-center w-full my-[50px] text-6xl font- light">
-        Tic tac <span className="text-[#26ffcb] font-extrabold ">toe_</span>
-      </h1>
-      <div>
-        <dialog ref={modal} className="modal">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">Hello!</h3>
-            <div>
-              {" "}
-              <h3 ref={titleRef}></h3>
+    <React.Fragment>
+      <section
+        className={`absolute top-1/2  -left-[4.5rem] ml-5 rotate-90 text-center transition-all duration-200 opacity-30 items-center flex flex-col ${
+          x ? "bg-red-800 opacity-100 px-20 pt-20 pb-9 -mt-20 -ml-6 rounded-t-full" : ""
+        }`}
+      >
+        {x ? (
+          <p className="text-4xl font-semibold opacity-100 transition-all duration-200">
+            Your turn
+          </p>
+        ) : (
+          <p className="text-4xl font-semibold opacity-0 transition-all duration-200">
+            Your turn
+          </p>
+        )}
+        <h1 className="text-6xl font-extralight">Player : 1</h1>
+      </section>
+      <section
+        className={`absolute top-1/2 -right-[4.5rem] transition-all mr-5 duration-200 opacity-30 -rotate-90 text-center flex flex-col ${
+          !x ? "bg-gray-400 text-black opacity-100 px-20 pt-20 pb-9 -mt-20 -mr-6 rounded-t-full" : ""
+        }`}
+      >
+        {!x ? (
+          <p className="text-4xl font-semibold opacity-100 transition-all duration-200">
+            Your turn
+          </p>
+        ) : (
+          <p className="text-4xl font-semibold opacity-0 transition-all duration-200">
+            Your turn
+          </p>
+        )}
+        <h1 className="text-6xl font-extralight">Player : 2</h1>
+      </section>
+
+      <div className=" min-h-screen text-white overflow-hidden ">
+        <h1 className="text-center w-full  py-14 text-6xl font- light">
+          Tic tac <span className="text-[#26ffcb] font-extrabold ">toe_</span>
+        </h1>
+
+        <div>
+          <dialog ref={modal} className="modal">
+            <div className="modal-box max-w-[25rem]">
+              <h3 className="font-bold text-2xl text-center">Winner</h3>
+              <div ref={titleRef}>
+                {" "}
+                <h3></h3>
+              </div>
+            </div>
+            <form method="dialog" className="modal-backdrop">
+              <button onClick={() => modal.current.close()}>Close</button>
+            </form>
+          </dialog>
+        </div>
+
+        <section>
+          <div className="board w-full relative justify-center z-50  items-center">
+            <div className="row-1 flex">
+              <div
+                className="boxes"
+                onClick={(e) => {
+                  toggle(e, 0);
+                }}
+              ></div>
+              <div
+                className="boxes"
+                onClick={(e) => {
+                  toggle(e, 1);
+                }}
+              ></div>
+              <div
+                className="boxes"
+                onClick={(e) => {
+                  toggle(e, 2);
+                }}
+              ></div>
+            </div>
+            <div className="row-2 flex">
+              <div
+                className="boxes"
+                onClick={(e) => {
+                  toggle(e, 3);
+                }}
+              ></div>
+              <div
+                className="boxes"
+                onClick={(e) => {
+                  toggle(e, 4);
+                }}
+              ></div>
+              <div
+                className="boxes"
+                onClick={(e) => {
+                  toggle(e, 5);
+                }}
+              ></div>
+            </div>
+            <div className="row-3 flex">
+              <div
+                className="boxes"
+                onClick={(e) => {
+                  toggle(e, 6);
+                }}
+              ></div>
+              <div
+                className="boxes"
+                onClick={(e) => {
+                  toggle(e, 7);
+                }}
+              ></div>
+              <div
+                className="boxes"
+                onClick={(e) => {
+                  toggle(e, 8);
+                }}
+              ></div>
             </div>
           </div>
-          <form method="dialog" className="modal-backdrop">
-            <button onClick={() => modal.current.close()}>Close</button>
-          </form>
-        </dialog>
-      </div>
-      <div className="board w- justify-center  items-center">
-        <div className="row-1 flex">
-          <div
-            className="boxes"
-            onClick={(e) => {
-              toggle(e, 0);
-            }}
-          ></div>
-          <div
-            className="boxes"
-            onClick={(e) => {
-              toggle(e, 1);
-            }}
-          ></div>
-          <div
-            className="boxes"
-            onClick={(e) => {
-              toggle(e, 2);
-            }}
-          ></div>
-        </div>
-        <div className="row-2 flex">
-          <div
-            className="boxes"
-            onClick={(e) => {
-              toggle(e, 3);
-            }}
-          ></div>
-          <div
-            className="boxes"
-            onClick={(e) => {
-              toggle(e, 4);
-            }}
-          ></div>
-          <div
-            className="boxes"
-            onClick={(e) => {
-              toggle(e, 5);
-            }}
-          ></div>
-        </div>
-        <div className="row-3 flex">
-          <div
-            className="boxes"
-            onClick={(e) => {
-              toggle(e, 6);
-            }}
-          ></div>
-          <div
-            className="boxes"
-            onClick={(e) => {
-              toggle(e, 7);
-            }}
-          ></div>
-          <div
-            className="boxes"
-            onClick={(e) => {
-              toggle(e, 8);
-            }}
-          ></div>
+        </section>
+        <div className="flex justify-center">
+          <button className="px-14 my-12 text-2xl font-bold text-white py-4 active:scale-[0.9]  duration-200 transition-all bg-[#1f3540] rounded-full">
+            Reset
+          </button>
         </div>
       </div>
-      <div className="flex justify-center">
-        <button className="px-14 my-12 text-2xl font-bold text-white py-4 active:scale-[0.9]  duration-200 transition-all bg-[#1f3540] rounded-full">
-          Reset
-        </button>
-      </div>
-    </div>
+    </React.Fragment>
   );
 };
 
