@@ -5,10 +5,21 @@ let data = ["", "", "", "", "", "", "", "", "", ""];
 const TicTacToe = () => {
   const [count, setCount] = useState(0);
   const [lock, setLock] = useState(false);
-  const [winner, setWinner] = useState("");
   const titleRef = useRef(null);
   const modal = useRef(null);
+  const box1 = useRef(null);
+  const box2 = useRef(null);
+  const box3 = useRef(null);
+  const box4 = useRef(null);
+  const box5 = useRef(null);
+  const box6 = useRef(null);
+  const box7 = useRef(null);
+  const box8 = useRef(null);
+  const box9 = useRef(null);
+
+  const box_array = [box1, box2, box3, box4, box5, box6, box7, box8, box9];
   const x = count % 2 === 0;
+
   const toggle = (e, num) => {
     if (lock || data[num] !== "") {
       return;
@@ -64,11 +75,19 @@ const TicTacToe = () => {
       `;
     }
   };
+
+  const reset = () => {
+    setLock(false);
+    data = ["", "", "", "", "", "", "", "", ""];
+    box_array.map((e) => (e.current.innerHTML = ""));
+  };
   return (
     <React.Fragment>
       <section
         className={`absolute top-1/2  -left-[4.5rem] ml-5 rotate-90 text-center transition-all duration-200 opacity-30 items-center flex flex-col ${
-          x ? "bg-red-800 opacity-100 px-20 pt-20 pb-9 -mt-20 -ml-6 rounded-t-full" : ""
+          x
+            ? "bg-red-800 !opacity-100 px-24 pt-20 pb-9 -mt-24 -ml-7 rounded-t-full"
+            : ""
         }`}
       >
         {x ? (
@@ -84,7 +103,9 @@ const TicTacToe = () => {
       </section>
       <section
         className={`absolute top-1/2 -right-[4.5rem] transition-all mr-5 duration-200 opacity-30 -rotate-90 text-center flex flex-col ${
-          !x ? "bg-gray-400 text-black opacity-100 px-20 pt-20 pb-9 -mt-20 -mr-6 rounded-t-full" : ""
+          !x
+            ? "bg-gray-400 text-black !opacity-100 px-20 pt-20 pb-9 -mt-20 -mr-2 rounded-t-full"
+            : ""
         }`}
       >
         {!x ? (
@@ -114,28 +135,38 @@ const TicTacToe = () => {
               </div>
             </div>
             <form method="dialog" className="modal-backdrop">
-              <button onClick={() => modal.current.close()}>Close</button>
+              <button
+                onClick={() => {
+                  modal.current.close();
+                  reset();
+                }}
+              >
+                Close
+              </button>
             </form>
           </dialog>
         </div>
 
         <section>
-          <div className="board w-full relative justify-center z-50  items-center">
+          <div className="board w-full  justify-center z-50  items-center">
             <div className="row-1 flex">
               <div
                 className="boxes"
+                ref={box1}
                 onClick={(e) => {
                   toggle(e, 0);
                 }}
               ></div>
               <div
                 className="boxes"
+                ref={box2}
                 onClick={(e) => {
                   toggle(e, 1);
                 }}
               ></div>
               <div
                 className="boxes"
+                ref={box3}
                 onClick={(e) => {
                   toggle(e, 2);
                 }}
@@ -144,18 +175,21 @@ const TicTacToe = () => {
             <div className="row-2 flex">
               <div
                 className="boxes"
+                ref={box4}
                 onClick={(e) => {
                   toggle(e, 3);
                 }}
               ></div>
               <div
                 className="boxes"
+                ref={box5}
                 onClick={(e) => {
                   toggle(e, 4);
                 }}
               ></div>
               <div
                 className="boxes"
+                ref={box6}
                 onClick={(e) => {
                   toggle(e, 5);
                 }}
@@ -164,18 +198,21 @@ const TicTacToe = () => {
             <div className="row-3 flex">
               <div
                 className="boxes"
+                ref={box7}
                 onClick={(e) => {
                   toggle(e, 6);
                 }}
               ></div>
               <div
                 className="boxes"
+                ref={box8}
                 onClick={(e) => {
                   toggle(e, 7);
                 }}
               ></div>
               <div
                 className="boxes"
+                ref={box9}
                 onClick={(e) => {
                   toggle(e, 8);
                 }}
@@ -184,7 +221,12 @@ const TicTacToe = () => {
           </div>
         </section>
         <div className="flex justify-center">
-          <button className="px-14 my-12 text-2xl font-bold text-white py-4 active:scale-[0.9]  duration-200 transition-all bg-[#1f3540] rounded-full">
+          <button
+            onClick={() => {
+              reset();
+            }}
+            className="px-14 my-12 text-2xl font-bold text-white py-4 active:scale-[0.9]  duration-200 transition-all bg-[#1f3540] rounded-full"
+          >
             Reset
           </button>
         </div>
