@@ -1,46 +1,82 @@
-import { useState } from "react";
-import x from "/130217-x-letter-free-photo.png";
-import o from "/—Pngtree—white circle element asset with_5995571.png";
+import { useRef, useState } from "react";
+import xo from "/130217-x-letter-free-photo.png";
+import ox from "/—Pngtree—white circle element asset with_5995571.png";
 let data = ["", "", "", "", "", "", "", "", "", ""];
 const TicTacToe = () => {
-  let [count, setCount] = useState(0);
+  const [count, setCount] = useState(0);
   const [lock, setLock] = useState(false);
+  const [winner, setWinner] = useState("");
+  const titleRef = useRef(null);
+  const modal = useRef(null);
 
   const toggle = (e, num) => {
-    if (lock) {
-      return 0;
+    if (lock || data[num] !== "") {
+      return;
     }
     if (count % 2 === 0) {
-      e.target.innerHTML = `<img src="${x}">`;
+      e.target.innerHTML = `<img className="duration-200 transition-all" src="${xo}">`;
       data[num] = "x";
-      setCount(++count);
-      console.log(count);
+      setCount((count) => count + 1);
     } else {
-      e.target.innerHTML = `<img className="w-full" src="${o}">`;
+      e.target.innerHTML = `<img className="w-full" src="${ox}">`;
       data[num] = "o";
-      setCount(++count);
+      setCount((count) => count + 1);
     }
+    checkWin();
   };
   const checkWin = () => {
-    if (data[0] === data[1] && data[1] === data[2] && data[2] != "") {
-      won(data);
+    if (data[0] === data[1] && data[1] === data[2] && data[2] !== "") {
+      won(data[2]);
+    } else if (data[3] === data[4] && data[4] === data[5] && data[5] !== "") {
+      won(data[5]);
+    } else if (data[6] === data[7] && data[7] === data[8] && data[8] !== "") {
+      won(data[8]);
+    } else if (data[0] === data[3] && data[3] === data[6] && data[6] !== "") {
+      won(data[6]);
+    } else if (data[1] === data[4] && data[4] === data[7] && data[7] !== "") {
+      won(data[7]);
+    } else if (data[2] === data[5] && data[5] === data[8] && data[8] !== "") {
+      won(data[8]);
+    } else if (data[0] === data[4] && data[4] === data[8] && data[8] !== "") {
+      won(data[8]);
+    } else if (data[2] === data[4] && data[4] === data[6] && data[6] !== "") {
+      won(data[6]);
     }
-    else if (data[3] === data[4] && data[4] === data[5] && data[5] != "") {
-      won(data);
-    }
-    else if (data[6] === data[7] && data[7] === data[8] && data[8] != "") {
-      won(data);
-    }
+    console.log(data);
   };
   const won = (winner) => {
     setLock(true);
+    // setWinner(won);
+    if (winner === "x") {
+      modal.current.showModal();
+      console.log("first winner");
+      titleRef.current.innerHTML = ` <h3> x win</h3>`;
+      console.log(won);
+    } else if (winner === "o") {
+      modal.current.showModal();
+      titleRef.current.innerHTML = ` <h3> o win</h3>`;
+    }
   };
-
+  console.log(modal);
   return (
-    <div className="container mx-auto min-h-screen text-white  ">
+    <div className="container mx-auto min-h-screen text-white">
       <h1 className="text-center w-full my-[50px] text-6xl font- light">
         Tic tac <span className="text-[#26ffcb] font-extrabold ">toe_</span>
       </h1>
+      <div>
+        <dialog ref={modal} className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Hello!</h3>
+            <div>
+              {" "}
+              <h3 ref={titleRef}></h3>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button onClick={() => modal.current.close()}>Close</button>
+          </form>
+        </dialog>
+      </div>
       <div className="board w- justify-center  items-center">
         <div className="row-1 flex">
           <div
