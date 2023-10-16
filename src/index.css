@@ -27,6 +27,12 @@ body {
 .boxes img {
   padding: 10px;
 }
+.player-1{
+  margin-top: -9.5rem;
+}
+.player-2{
+  margin-top: -9.5rem;
+}
 
 @media (max-width: 900px) {
   .boxes{
@@ -43,10 +49,25 @@ body {
   
 }
 @media (max-width:475px) {
-  .player_1{
-    margin-top: -15rem;
+ .player_1{
+    margin-top: -24rem;
   }
   .player_2{
-    margin-top: 13rem;
+    margin-top: 3rem;
+  }
+}
+@media (max-width:400px) {
+  .player-1{
+    margin-top: -3.5rem;
+  }
+  .player-2{
+    margin-top: -3.5rem;
+  }
+
+  .player_1{
+    margin-top: -16rem;
+  }
+  .player_2{
+    margin-top: 8.5rem;
   }
 }

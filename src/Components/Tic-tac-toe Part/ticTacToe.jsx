@@ -85,9 +85,9 @@ const TicTacToe = () => {
     <React.Fragment>
       <div className="flex items-center ">
         <section
-          className={`absolute top-1/2 -left-[4.5rem] ml-10 sm:ml-7  lg:ml-5 rotate-90 text-center transition-all duration-200 -mt-24 lg:-mt-10 opacity-30 items-center flex flex-col ${
+          className={`absolute top-1/2 -left-[4.5rem] ml-10 sm:ml-7  lg:ml-5 rotate-90 text-center transition-all duration-200 player-1 lg:-mt-10 opacity-30 items-center flex flex-col ${
             x
-              ? "bg-red-800 !opacity-100 player_1 px-8 z-0 pt-3 pb-2 -mt-24 ml-3 sm:px-16 sm:pt-7 sm:pb-5 sm:-ml-3 sm:-mt-16 lg:px-24 lg:pt-20 lg:pb-9 lg:-mt-28 lg:-ml-10 rounded-t-full"
+              ? "bg-red-800 !opacity-100 player_1 px-8 z-0 pt-3 pb-2  ml-3 sm:px-16 sm:pt-7 sm:pb-5 sm:-ml-3 sm:-mt-16 lg:px-24 lg:pt-20 lg:pb-9 lg:-mt-28 lg:-ml-[2rem] rounded-t-full"
               : ""
           }`}
         >
@@ -105,9 +105,9 @@ const TicTacToe = () => {
           </h3>
         </section>
         <section
-          className={`absolute top-1/2 -right-[4.5rem] mr-10 sm:mr-7  lg:mr-5 -rotate-90 text-center transition-all duration-200 -mt-24 lg:-mt-10 opacity-30 items-center flex flex-col ${
+          className={`absolute top-1/2 -right-[4.5rem] mr-10 sm:mr-7  lg:mr-5 -rotate-90 text-center transition-all duration-200 player-2 lg:-mt-10 opacity-30 items-center flex flex-col ${
             !x
-              ? "bg-gray-400 text-black !opacity-100 player_2 px-8 pt-3 pb-2 -mt-24 mr-3 sm:px-16 sm:pt-7 sm:pb-5 sm:-mr-3 sm:-mt-16 lg:px-24 lg:pt-20 lg:pb-9 lg:-mt-28 lg:-mr-10 rounded-t-full"
+              ? "bg-gray-400 text-black !opacity-100 player_2 px-8 pt-3 pb-2  mr-3 sm:px-16 sm:pt-7 sm:pb-5 sm:-mr-3 sm:-mt-16 lg:px-24 lg:pt-20 lg:pb-9 lg:-mt-28 lg:-mr-[2rem] rounded-t-full"
               : ""
           }`}
         >
@@ -228,7 +228,7 @@ const TicTacToe = () => {
             </div>
           </div>
         </section>
-        <div className="flex justify-center mx-auto mt-16 ">
+        <div className="flex justify-center mx-auto mt-16 lg:mt-5">
           <button
             onClick={() => {
               reset();
