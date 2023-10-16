@@ -2,7 +2,7 @@ import TicTacToe from "../Components/Tic-tac-toe Part/ticTacToe";
 
 const Main = () => {
     return (
-        <div>
+        <div className="min-h-screen">
             <TicTacToe/>
         </div>
     );

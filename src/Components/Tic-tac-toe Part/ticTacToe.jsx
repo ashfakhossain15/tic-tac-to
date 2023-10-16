@@ -26,7 +26,7 @@ const TicTacToe = () => {
     }
     setCount((count) => count + 1);
     if (count % 2 === 0) {
-      e.target.innerHTML = `<img className="duration-200 transition-all" src="${xo}">`;
+      e.target.innerHTML = `<img className="transition-all duration-200" src="${xo}">`;
       data[num] = "x";
     } else {
       e.target.innerHTML = `<img className="w-full" src="${ox}">`;
@@ -61,15 +61,15 @@ const TicTacToe = () => {
       modal.current.showModal();
       console.log("first winner");
       titleRef.current.innerHTML = ` 
-      <div className="w-52 p-10 m-5"> 
+      <div className="p-10 m-5 w-52"> 
       <img className="w-24" src="${xo}">
       </div>
       `;
       console.log(won);
     } else if (winner === "o") {
       modal.current.showModal();
-      titleRef.current.innerHTML = ` <div className="w-52 p-10 m-5"> 
-      <img className="duration-200 transition-all " src="${ox}">
+      titleRef.current.innerHTML = ` <div className="p-10 m-5 w-52"> 
+      <img className="transition-all duration-200 " src="${ox}">
       </div>
 
       `;
@@ -83,52 +83,61 @@ const TicTacToe = () => {
   };
   return (
     <React.Fragment>
-      <section
-        className={`absolute top-1/2  -left-[4.5rem] ml-5 rotate-90 text-center transition-all duration-200 opacity-30 items-center flex flex-col ${
-          x
-            ? "bg-red-800 !opacity-100 px-24 pt-20 pb-9 -mt-24 -ml-7 rounded-t-full"
-            : ""
-        }`}
-      >
-        {x ? (
-          <p className="text-4xl font-semibold opacity-100 transition-all duration-200">
-            Your turn
-          </p>
-        ) : (
-          <p className="text-4xl font-semibold opacity-0 transition-all duration-200">
-            Your turn
-          </p>
-        )}
-        <h1 className="text-6xl font-extralight">Player : 1</h1>
-      </section>
-      <section
-        className={`absolute top-1/2 -right-[4.5rem] transition-all mr-5 duration-200 opacity-30 -rotate-90 text-center flex flex-col ${
-          !x
-            ? "bg-gray-400 text-black !opacity-100 px-20 pt-20 pb-9 -mt-20 -mr-2 rounded-t-full"
-            : ""
-        }`}
-      >
-        {!x ? (
-          <p className="text-4xl font-semibold opacity-100 transition-all duration-200">
-            Your turn
-          </p>
-        ) : (
-          <p className="text-4xl font-semibold opacity-0 transition-all duration-200">
-            Your turn
-          </p>
-        )}
-        <h1 className="text-6xl font-extralight">Player : 2</h1>
-      </section>
+      <div className="flex items-center ">
+        <section
+          className={`absolute top-1/2 -left-[4.5rem] ml-10 sm:ml-7  lg:ml-5 rotate-90 text-center transition-all duration-200 -mt-24 lg:-mt-10 opacity-30 items-center flex flex-col ${
+            x
+              ? "bg-red-800 !opacity-100 player_1 px-8 z-0 pt-3 pb-2 -mt-24 ml-3 sm:px-16 sm:pt-7 sm:pb-5 sm:-ml-3 sm:-mt-16 lg:px-24 lg:pt-20 lg:pb-9 lg:-mt-28 lg:-ml-10 rounded-t-full"
+              : ""
+          }`}
+        >
+          {x ? (
+            <p className="text-2xl font-semibold transition-all duration-200 opacity-100 sm:text-3xl lg:text-4xl">
+              Your turn
+            </p>
+          ) : (
+            <p className="text-2xl font-semibold transition-all duration-200 opacity-0 sm:text-3xl lg:text-4xl">
+              Your turn
+            </p>
+          )}
+          <h3 className="text-4xl sm:text-5xl lg:text-6xl font-extralight">
+            Player : 1
+          </h3>
+        </section>
+        <section
+          className={`absolute top-1/2 -right-[4.5rem] mr-10 sm:mr-7  lg:mr-5 -rotate-90 text-center transition-all duration-200 -mt-24 lg:-mt-10 opacity-30 items-center flex flex-col ${
+            !x
+              ? "bg-gray-400 text-black !opacity-100 player_2 px-8 pt-3 pb-2 -mt-24 mr-3 sm:px-16 sm:pt-7 sm:pb-5 sm:-mr-3 sm:-mt-16 lg:px-24 lg:pt-20 lg:pb-9 lg:-mt-28 lg:-mr-10 rounded-t-full"
+              : ""
+          }`}
+        >
+          {!x ? (
+            <p className="text-2xl font-semibold transition-all duration-200 opacity-100 sm:text-3xl lg:text-4xl">
+              Your turn
+            </p>
+          ) : (
+            <p className="text-2xl font-semibold transition-all duration-200 opacity-0 sm:text-3xl lg:text-4xl">
+              Your turn
+            </p>
+          )}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extralight">
+            Player : 2
+          </h1>
+        </section>
+      </div>
 
-      <div className=" min-h-screen text-white overflow-hidden ">
-        <h1 className="text-center w-full  py-14 text-6xl font- light">
-          Tic tac <span className="text-[#26ffcb] font-extrabold ">toe_</span>
-        </h1>
-
+      <div className="text-white ">
+        {" "}
+        <h1 className="w-full mb-6 text-5xl font-light text-center py-14 lg:text-6xl">
+          {" "}
+          Tic tac <span className="text-[#26ffcb] font-extrabold ">
+            toe_
+          </span>{" "}
+        </h1>{" "}
         <div>
           <dialog ref={modal} className="modal">
             <div className="modal-box max-w-[25rem]">
-              <h3 className="font-bold text-2xl text-center">Winner</h3>
+              <h3 className="text-2xl font-bold text-center">Winner</h3>
               <div ref={titleRef}>
                 {" "}
                 <h3></h3>
@@ -146,10 +155,9 @@ const TicTacToe = () => {
             </form>
           </dialog>
         </div>
-
         <section>
-          <div className="board w-full  justify-center z-50  items-center">
-            <div className="row-1 flex">
+          <div className=" items-center justify-center w-full z-50 board">
+            <div className="flex row-1">
               <div
                 className="boxes"
                 ref={box1}
@@ -172,7 +180,7 @@ const TicTacToe = () => {
                 }}
               ></div>
             </div>
-            <div className="row-2 flex">
+            <div className="flex row-2">
               <div
                 className="boxes"
                 ref={box4}
@@ -195,7 +203,7 @@ const TicTacToe = () => {
                 }}
               ></div>
             </div>
-            <div className="row-3 flex">
+            <div className="flex row-3">
               <div
                 className="boxes"
                 ref={box7}
@@ -220,7 +228,7 @@ const TicTacToe = () => {
             </div>
           </div>
         </section>
-        <div className="flex justify-center">
+        <div className="flex justify-center mx-auto mt-16 ">
           <button
             onClick={() => {
               reset();

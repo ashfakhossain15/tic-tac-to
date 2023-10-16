@@ -10,8 +10,7 @@ body {
 }
 .board {
   display: grid;
-  width: 560px;
-  height: 48 0px;
+  
   margin: auto;
 }
 .boxes {
@@ -27,4 +26,27 @@ body {
 }
 .boxes img {
   padding: 10px;
+}
+
+@media (max-width: 900px) {
+  .boxes{
+    width: 120px !important;
+    height: 120px !important;
+  }
+  
+}
+@media (max-width: 670px) {
+  .boxes{
+    width: 82px !important;
+    height: 82px !important;
+  }
+  
+}
+@media (max-width:475px) {
+  .player_1{
+    margin-top: -15rem;
+  }
+  .player_2{
+    margin-top: 13rem;
+  }
 }
