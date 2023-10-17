@@ -50,10 +50,16 @@ body {
 }
 @media (max-width:475px) {
  .player_1{
-    margin-top: -24rem;
+    margin-top: -18rem;
   }
   .player_2{
-    margin-top: 3rem;
+    margin-top: 8rem;
+  }
+  .player-1{
+    margin-top: -3rem;
+  }
+  .player-2{
+    margin-top: -3rem;
   }
 }
 @media (max-width:400px) {
